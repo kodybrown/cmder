@@ -79,7 +79,7 @@ optpair GetOption()
 	return pair;
 }
 
-void StartCmder(std::wstring path)
+void StartCmder(std::wstring path, bool is_single_mode)
 {
 #if USE_TASKBAR_API
 	wchar_t appId[MAX_PATH] = { 0 };
@@ -106,7 +106,14 @@ void StartCmder(std::wstring path)
 	}
 	PathCombine(conEmuPath, exeDir, L"vendor\\conemu-maximus5\\ConEmu.exe");
 
-	swprintf_s(args, L"/Icon \"%s\" /Title Cmder /LoadCfgFile \"%s\"", icoPath, cfgPath);
+	if (is_single_mode) 
+	{
+		swprintf_s(args, L"/single /Icon \"%s\" /Title Cmder /LoadCfgFile \"%s\"", icoPath, cfgPath);
+	}
+	else 
+	{
+		swprintf_s(args, L"/Icon \"%s\" /Title Cmder /LoadCfgFile \"%s\"", icoPath, cfgPath);
+	}
 
 	SetEnvironmentVariable(L"CMDER_ROOT", exeDir);
 	SetEnvironmentVariable(L"CMDER_START", path.c_str());
@@ -233,7 +240,11 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	if (streqi(opt.first.c_str(), L"/START"))
 	{
-		StartCmder(opt.second);
+		StartCmder(opt.second, false);
+	}
+	else if (streqi(opt.first.c_str(), L"/SINGLE"))
+	{
+		StartCmder(opt.second, true);
 	}
 	else if (streqi(opt.first.c_str(), L"/REGISTER"))
 	{
@@ -247,7 +258,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	}
 	else
 	{
-		MessageBox(NULL, L"Unrecognized parameter.\n\nValid options:\n  /START <path>\n  /REGISTER [USER/ALL]\n  /UNREGISTER [USER/ALL]", MB_TITLE, MB_OK);
+		MessageBox(NULL, L"Unrecognized parameter.\n\nValid options:\n  /START <path>\n  /SINGLE <path>\n  /REGISTER [USER/ALL]\n  /UNREGISTER [USER/ALL]", MB_TITLE, MB_OK);
 		return 1;
 	}
 

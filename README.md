@@ -1,29 +1,29 @@
 # Cmder
 
-[![Join the chat at https://gitter.im/bliker/cmder](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bliker/cmder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/cmderdev/cmder](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cmderdev/cmder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Latest release is **[v1.1.4.1](https://github.com/bliker/cmder/releases/tag/v1.1.4.1)**
+Latest release is **[v1.2](https://github.com/bliker/cmder/releases/tag/v1.2)**
 
-Cmder is a **software package** created out of pure frustration over absence of usable console emulator on Windows. It is based on [ConEmu](https://code.google.com/p/conemu-maximus5/) with *major* config overhaul. Monokai color scheme, amazing [clink](https://github.com/mridgers/clink) and custom prompt layout.
+Cmder is a **software package** created out of pure frustration over absence of usable console emulator on Windows. It is based on [ConEmu](https://github.com/Maximus5/ConEmu) with *major* config overhaul. Monokai color scheme, amazing [clink](https://github.com/mridgers/clink) and custom prompt layout.
 
 ![Cmder Screenshot](http://i.imgur.com/g1nNf0I.png)
 
 ## Why use it
 
-The main advantage of Cmder is portability. It is designed to be totally self-contained with no external dependencies, that is makes it great for **USB Sticks** or **Dropbox**. So you can carry your console, aliases and binaries (like wget, curl and git) with you anywhere.
+The main advantage of Cmder is portability. It is designed to be totally self-contained with no external dependencies, which makes it great for **USB Sticks** or **Dropbox** - you can carry your console, aliases and binaries (like wget, curl and git) with you anywhere!
 
 ## Installation
 
 1. Download the latest release
-1. Extract
-1. (optional) Place files into `bin` folder, it will be injected into your PATH.
-1. Run cmder
+2. Extract
+3. (optional) Place your own executable files into the `bin` folder to be injected into your PATH.
+4. Run cmder
 
 *(There will be a version with installer)*
 
 ## Integration
 
-So you've experimented with cmder a little and want to give it a shot in a more permanent home;
+So, you've experimented with cmder a little and want to give it a shot in a more permanent home:
 
 ### Shortcut to open Cmder in a chosen folder
 
@@ -51,7 +51,7 @@ In a file explorer window right click in or on a directory to see "Cmder Here" i
 * `Ctrl + r` : History search
 * `Shift + mouse` : Select and copy text from buffer
 
-(Some shortcuts are not yet documented, thought they exist, please add them here)
+(Some shortcuts are not yet documented, thought they exist - please document them here)
 
 ## Features
 
@@ -62,13 +62,16 @@ For example there is one defined for you `alias e.=explorer .`
 
 All aliases will be saved in `/config/aliases` file
 
+### SSH Agent
+
+To start SSH agent simply call `agent`, which is in the `bin` folder.
+
+If you want to run SSH agent on startup, uncomment the line in `/vendor/init.bat`so it says `@call "%CMDER_ROOT%/bin/agent.cmd"`.
+
 ## Todo
 
-1. Complete PowerShell compatibility.
-2. Workaround git.exe overload after msysgit download (Granted this is an upstream issue).
-3. Redo Build/Pack scripts or remove them altogether.
-4. Git Bash
-5. Check for clink and git before injecting them
+1. Git Bash
+2. Check for clink and git before injecting them (Sort of done)
 
 ## License
 
@@ -76,7 +79,7 @@ All software included is bundled with own license
 
 The MIT License (MIT)
 
-Copyright (c) 2013 Samuel Vasko
+Copyright (c) 2015 Samuel Vasko
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
