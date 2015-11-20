@@ -68,6 +68,10 @@ To start SSH agent simply call `agent`, which is in the `bin` folder.
 
 If you want to run SSH agent on startup, uncomment the line in `/vendor/init.bat`so it says `@call "%CMDER_ROOT%/bin/agent.cmd"`.
 
+### Per Machine Settings
+
+Looks for settings in the following file first `config\\ConEmu-%COMPUTERNAME%.xml`. If that file is not found, then it will look in the default location `config\\ConEmu.xml`.
+
 ## Todo
 
 1. Git Bash
