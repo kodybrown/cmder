@@ -97,7 +97,7 @@ Note: Bash and Mintty sessions will also source the '$HOME/.bashrc' file it it e
 
 ### Aliases
 #### Cmder(Cmd.exe) Aliases
-You can define simple aliases for `cmd.exe` sessions with a command like `alias name=command`.  Cmd.exe aliases support optional parameters through the `$1-9` or the `$*` special characters so the alias `vi=vim.exe $*` typed as `vi [filename]` will open `[filename]` in `vim.exe`. 
+You can define simple aliases for `cmd.exe` sessions with a command like `alias name=command`.  Cmd.exe aliases support optional parameters through the `$1-9` or the `$*` special characters so the alias `vi=vim.exe $*` typed as `vi [filename]` will open `[filename]` in `vim.exe`.
 
 Cmd.exe aliases can also be more complex. See: [DOSKEY.EXE documentation](http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/doskey.mspx?mfr=true) for additional details on complex aliases/macros for 'cmd.exe'
 
@@ -106,7 +106,7 @@ Aliases defined using the `alias.bat` command will automatically be saved in the
 #### Bash.exe|Mintty.exe Aliases
 Bash shells support simple and complex aliases with optional parameters natively so they work a little different.  Typing `alias name=command` will create an alias only for the current running session.  To make an alias permanent add it to either your `$CMDER_ROOT/config/user-profile.sh` or your `$HOME/.bashrc`.
 
-If you add bash aliases to `$CMDER_ROOT/config/user-profile.sh` they will portable and follow your Cmder folder if you copy it to another machine.  `$HOME/.bashrc` defined aliases are not portable. 
+If you add bash aliases to `$CMDER_ROOT/config/user-profile.sh` they will portable and follow your Cmder folder if you copy it to another machine.  `$HOME/.bashrc` defined aliases are not portable.
 
 #### Powershell.exe Aliases
 Powershell has native simple alias support, for example `[new-alias | set-alias] alias command`, so complex aliases with optional parameters are not supported in Powershell sessions.  Type `get-help [new-alias|set-alias] -full` for help on Powershell aliases.
@@ -119,7 +119,7 @@ If you want to run SSH agent on startup, include the line `@call "%GIT_INSTALL_R
 
 ### Per Machine Settings
 
-Looks for settings in the following file first `config\\ConEmu-%COMPUTERNAME%.xml`. If that file is not found, then it will look in the default location `config\\ConEmu.xml`.
+Looks for settings in the following file first `config\\user-ConEmu-%COMPUTERNAME%.xml`. If that file is not found, then it will look in the default location `config\\ConEmu.xml`.
 
 ## Todo
 
