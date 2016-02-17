@@ -117,6 +117,10 @@ To start SSH agent simply call `start-ssh-agent`, which is in the `vendor/git-fo
 
 If you want to run SSH agent on startup, include the line `@call "%GIT_INSTALL_ROOT%/cmd/start-ssh-agent.cmd"` in `%CMDER_ROOT%/config/user-profile.cmd` (usually just uncomment it).
 
+### Per Machine Settings
+
+Looks for settings in the following file first `config\\ConEmu-%COMPUTERNAME%.xml`. If that file is not found, then it will look in the default location `config\\ConEmu.xml`.
+
 ## Todo
 
 1. Check for clink and git before injecting them (Sort of done)
