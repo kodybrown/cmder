@@ -95,6 +95,16 @@ User specific configuration is possible using the cmder specific shell config fi
 
 Note: Bash and Mintty sessions will also source the '$HOME/.bashrc' file it it exists after it sources '$CMDER_ROOT/config/user-profile.sh'.
 
+### Linux like 'profile.d' support for all supported shell types.
+You can write *.cmd|*.bat, *.ps1, and *.sh scripts and just drop them in the %CMDER_ROOT%\config\profile.d folder to add startup config to Cmder.
+
+|Shell|Cmder 'Profile.d' Scripts|
+| ------------- |:-------------:|
+|Cmder|%CMDER_ROOT%\config\profile.d\\*.bat and *.cmd|
+|Powershell|$ENV:CMDER_ROOT\config\profile.d\\*.ps1|
+|Bash/Mintty|$CMDER_ROOT/config/profile.d/*.sh|
+
+
 ### Aliases
 #### Cmder(Cmd.exe) Aliases
 You can define simple aliases for `cmd.exe` sessions with a command like `alias name=command`.  Cmd.exe aliases support optional parameters through the `$1-9` or the `$*` special characters so the alias `vi=vim.exe $*` typed as `vi [filename]` will open `[filename]` in `vim.exe`.
@@ -117,6 +127,31 @@ To start SSH agent simply call `start-ssh-agent`, which is in the `vendor/git-fo
 
 If you want to run SSH agent on startup, include the line `@call "%GIT_INSTALL_ROOT%/cmd/start-ssh-agent.cmd"` in `%CMDER_ROOT%/config/user-profile.cmd` (usually just uncomment it).
 
+### Using external Cygwin/Babun, MSys2, or Git for Windows SDK with Cmder.
+
+1. Setup a new task by pressing '<kbd>Win</kbd> +<kbd>Alt</kbd> + <kbd>T</kbd>'
+1. Click the '+' button to add a task.
+1. Name the new task in the top text box.
+1. Provide task parameters, this is optional.
+1. Add ```cmd /c "[path_to_external_env]\bin\bash --login -i" -new_console:d:%USERPROFILE%``` to the Commands text box.
+
+Recommended Optional Steps:
+
+Copy the 'vendor/cmder_exinit' file to the Cygwin/Babun, MSys2, or Git for Windows SDK environments ```/etc/profile.d/``` folder to use portable settings in the $CMDER_ROOT/config folder.
+
+Note: MinGW could work if the init scripts include profile.d but this has not been tested.
+
+The destination file extension depends on the shell you use in that environment.  For example:
+
+* bash - Copy to /etc/profile.d/cmder_exinit.sh
+* zsh  - Copy to /etc/profile.d/cmder_exinit.zsh
+
+Uncomment and edit the below line in the script to use Cmder config even when launched from outside Cmder.
+
+```
+# CMDER_ROOT=${USERPROFILE}/cmder  # This is not required if launched from Cmder.
+```
+
 ### Per Machine Settings
 
 Looks for settings in the following file first `config\\user-ConEmu-%COMPUTERNAME%.xml`. If that file is not found, then it will look in the default location `config\\ConEmu.xml`.
@@ -124,6 +159,12 @@ Looks for settings in the following file first `config\\user-ConEmu-%COMPUTERNAM
 ## Todo
 
 1. Check for clink and git before injecting them (Sort of done)
+
+## Current development branch
+
+You can download builds of the current development branch by going to Appveyor via the following link:
+
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/github/cmderdev/cmder?svg=True)](https://ci.appveyor.com/project/MartiUK/cmder/branch/development/artifacts)
 
 ## License
 
